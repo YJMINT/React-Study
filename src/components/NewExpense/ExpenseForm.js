@@ -1,7 +1,7 @@
 import React , {useState} from 'react';
 import './ExpenseForm.css';
 
-const ExpenseFrom = () => {
+const ExpenseFrom = (props) => {
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
     const [enteredDate, setEnteredDate] = useState('');
@@ -24,7 +24,8 @@ const ExpenseFrom = () => {
             amount: enteredAmount,
             date: new Date(enteredDate)
         };
-        console.log(expenseData);
+
+        props.onSaveExpenseData(expenseData); //호출할 때 (expenseData)를 인자로 넣어 전달할 수도 있음.
         setEnteredTitle('');
         setEnteredAmount('');
         setEnteredDate('');
