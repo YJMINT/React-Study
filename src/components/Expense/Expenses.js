@@ -16,15 +16,14 @@ const Expenses = (props) =>  {
 
     let expenseContext =  <p>No expense found.</p>;
 
-    if (filteredExpenses. length > 0) {
+    if (filteredExpenses.length > 0) {
         expenseContext = filteredExpenses.map((expense) => (
             <ExpenseItem
             key = {expense.id} //목록의 아이템을 매핑할 때는 반드시 key가 있어야 한다.
             title = {expense.title}
             amount = {expense.amount}
             date = {expense.date}
-            />
-        ));
+            />));
     }
 
     return (
