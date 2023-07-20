@@ -10,14 +10,20 @@ const Expenses = (props) =>  {
         setFilteredYear(selectedYear);
     }
 
+    const filteredExpenses = props.item.filter(expense => {
+        return expense.date.getFullYear().toString() === filteredYear; //선택한 연도와 같은 경우 true 아닐경우 false 반환
+    });
+
     return (
     <div>
         <Card className="expenses">
             <ExpenseFilter selected={filteredYear} onChangeFilter={filterChangeHandler}/>
-            <ExpenseItem title={props.item[0].title} amount={props.item[0].amount} date={props.item[0].date}/>
-            <ExpenseItem title={props.item[1].title} amount={props.item[1].amount} date={props.item[1].date}/>
-            <ExpenseItem title={props.item[2].title} amount={props.item[2].amount} date={props.item[2].date}/>
-            <ExpenseItem title={props.item[3].title} amount={props.item[3].amount} date={props.item[3].date}/>
+            {filteredExpenses.map((expense) => <ExpenseItem
+                key = {expense.id} //목록의 아이템을 매핑할 때는 반드시 key가 있어야 한다.
+                title = {expense.title}
+                amount = {expense.amount}
+                date = {expense.date}
+            />)}
         </Card>
     </div>
     )
