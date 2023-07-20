@@ -18,9 +18,8 @@ const Expenses = (props) =>  {
     <div>
         <Card className="expenses">
             <ExpenseFilter selected={filteredYear} onChangeFilter={filterChangeHandler}/>
-            {filteredExpenses.length === 0 ? (<p>No expense found</p>) //기본 조건부 표현식
-                :
-                (filteredExpenses.map((expense) => <ExpenseItem
+            {filteredExpenses.length === 0 && <p>No expense found</p>} {/*긴 조건부 표현을 &&연산자를 이용하여 두개의 독립 표현식으로 나눔*/}
+            {filteredExpenses.length > 0 && (filteredExpenses.map((expense) => <ExpenseItem
                     key = {expense.id} //목록의 아이템을 매핑할 때는 반드시 key가 있어야 한다.
                     title = {expense.title}
                     amount = {expense.amount}
