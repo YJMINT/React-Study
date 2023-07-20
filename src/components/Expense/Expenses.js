@@ -18,12 +18,15 @@ const Expenses = (props) =>  {
     <div>
         <Card className="expenses">
             <ExpenseFilter selected={filteredYear} onChangeFilter={filterChangeHandler}/>
-            {filteredExpenses.map((expense) => <ExpenseItem
-                key = {expense.id} //목록의 아이템을 매핑할 때는 반드시 key가 있어야 한다.
-                title = {expense.title}
-                amount = {expense.amount}
-                date = {expense.date}
-            />)}
+            {filteredExpenses.length === 0 ? (<p>No expense found</p>) //기본 조건부 표현식
+                :
+                (filteredExpenses.map((expense) => <ExpenseItem
+                    key = {expense.id} //목록의 아이템을 매핑할 때는 반드시 key가 있어야 한다.
+                    title = {expense.title}
+                    amount = {expense.amount}
+                    date = {expense.date}
+                />))}
+
         </Card>
     </div>
     )
